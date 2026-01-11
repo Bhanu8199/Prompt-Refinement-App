@@ -38,6 +38,16 @@ export function getFileType(filename: string, mimeType: string): FileType {
 
 export async function extractTextFromFile(filePath: string, fileType: FileType): Promise<string> {
   try {
+    // Check if file exists and is readable
+    if (!fs.existsSync(filePath)) {
+      throw new Error('File does not exist');
+    }
+
+    const stats = fs.statSync(filePath);
+    if (stats.size === 0) {
+      throw new Error('File is empty');
+    }
+
     switch (fileType) {
       case 'text':
         return fs.readFileSync(filePath, 'utf-8');
@@ -59,7 +69,31 @@ export async function extractTextFromFile(filePath: string, fileType: FileType):
     }
   } catch (error) {
     console.error(`Error extracting text from ${fileType} file:`, error);
-    throw new Error(`Failed to extract text from ${fileType} file`);
+
+    // Provide specific error messages for different failure types
+    if (error instanceof Error) {
+      if (error.message.includes('File does not exist')) {
+        throw new Error('Uploaded file could not be found. Please try uploading again.');
+      }
+      if (error.message.includes('File is empty')) {
+        throw new Error('Uploaded file appears to be empty or corrupted.');
+      }
+      if (error.message.includes('Unsupported file type')) {
+        throw error; // Re-throw as-is
+      }
+      // Handle specific extraction errors
+      if (fileType === 'pdf' && error.message.includes('Invalid PDF')) {
+        throw new Error('PDF file appears to be corrupted or invalid.');
+      }
+      if (fileType === 'docx' && error.message.includes('Invalid')) {
+        throw new Error('DOCX file appears to be corrupted or invalid.');
+      }
+      if (fileType === 'image' && error.message.includes('recognition')) {
+        throw new Error('Image file could not be processed. Please ensure it contains readable text.');
+      }
+    }
+
+    throw new Error(`Failed to extract text from ${fileType} file. The file may be corrupted or in an unsupported format.`);
   }
 }
 

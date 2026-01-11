@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const fs = require('fs');
+import fetch from 'node-fetch';
+import fs from 'fs';
 
 async function testAPI() {
   const BASE_URL = 'http://127.0.0.1:5003';
