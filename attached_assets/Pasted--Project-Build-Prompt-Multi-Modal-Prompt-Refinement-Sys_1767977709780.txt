@@ -1,0 +1,122 @@
+🔹 Project Build Prompt: Multi-Modal Prompt Refinement System
+
+You are an experienced AI systems architect and software engineer.
+Design and implement a Multi-Modal Prompt Refinement System that converts unstructured, multi-format user inputs into a clean, validated, and standardized prompt schema suitable for downstream AI workflows.
+
+🧠 Core Objective
+
+Build a system that accepts heterogeneous inputs (text, images, documents, or combinations) and intelligently refines them into a single, consistent, structured prompt representation, while explicitly handling ambiguity, missing information, and irrelevant inputs.
+
+The system should prioritize clarity, traceability, and decision justification, not just raw extraction.
+
+🔹 Supported Input Modalities
+
+The system must accept any of the following:
+
+Plain text (product ideas, instructions, descriptions)
+
+Images (UI wireframes, product sketches, screenshots)
+
+Documents (PDF / Word files containing specifications)
+
+Hybrid inputs (any combination of text, image, and document)
+
+Each input type must be processed through a dedicated extraction strategy, then unified into a shared semantic representation.
+
+🔹 Prompt Refinement Responsibilities
+
+From the provided inputs, extract and infer the following:
+
+Primary Intent
+What problem is the user trying to solve?
+
+Functional Expectations
+What capabilities or behaviors are explicitly or implicitly requested?
+
+Technical or Operational Constraints
+Platforms, technologies, performance limits, compliance needs (only if mentioned or strongly implied)
+
+Expected Outputs
+What should the final system or AI generate or deliver?
+
+Confidence & Ambiguity Indicators
+Explicitly flag missing, conflicting, or weakly inferred information
+
+🔹 Structured Output Design (Your Own Template)
+
+Design a custom prompt schema that:
+
+Separates explicit facts vs inferred assumptions
+
+Marks required vs optional fields
+
+Includes a missing-information section
+
+Includes a refinement confidence score
+
+Supports validation and rejection logic
+
+You must justify every field in the schema with reasoning.
+
+🔹 System Behavior Rules
+
+If input is incomplete → refine what is possible and clearly list missing fields
+
+If input is ambiguous → provide best inference + ambiguity warning
+
+If input is irrelevant or non-actionable → reject with explanation
+
+Ensure consistent output structure regardless of input type
+
+🔹 Technical Expectations
+
+Modular extraction pipeline per modality
+
+Unified intermediate representation before refinement
+
+Validation layer to enforce schema consistency
+
+Clear error handling and rejection messaging
+
+Simple but explainable logic over black-box complexity
+
+🔹 Deliverables
+
+Working prototype (CLI or Streamlit preferred)
+
+Source code with inline documentation
+
+Formal prompt schema documentation
+
+At least 5 diverse sample inputs with refined outputs
+
+Detailed explanation document covering:
+
+Thought process and problem breakdown
+
+Design rationale for schema and architecture
+
+Prioritization logic
+
+Alternatives considered and rejected
+
+Clear separation of AI-assisted vs original work
+
+🔹 Critical Instruction
+
+Do not blindly rely on AI-generated logic.
+All architectural decisions, schema design, validation rules, and prioritization logic must be explicitly reasoned and documented as original analytical work.
+
+Focus on system design clarity, explainability, and robustness, not overengineering.
+
+🎯 Expected Outcome
+
+A thoughtfully designed, well-documented system that demonstrates:
+
+Strong engineering judgment
+
+Structured problem-solving
+
+Real-world AI pipeline thinking
+
+Ownership of decisions

@@ -1,0 +1,122 @@
+[
+  {
+    "input": "Create a todo app with React",
+    "status": 201,
+    "statusText": "Created",
+    "data": {
+      "id": 78,
+      "originalInput": "Create a todo app with React",
+      "inputType": "text",
+      "refinedPrompt": "{\"primaryIntent\":\"Create an online application\",\"functionalExpectations\":[],\"technicalConstraints\":[],\"expectedOutputs\":[],\"ambiguities\":[],\"missingInformation\":[],\"confidenceScore\":0.7}",
+      "confidenceScore": 0.7,
+      "metadata": "{}",
+      "createdAt": "2026-01-11T07:31:34.000Z"
+    },
+    "valid": true,
+    "refinedOutput": {
+      "primaryIntent": "Create an online application",
+      "functionalExpectations": [],
+      "technicalConstraints": [],
+      "expectedOutputs": [],
+      "ambiguities": [],
+      "missingInformation": [],
+      "confidenceScore": 0.7
+    }
+  },
+  {
+    "input": "Build an API for user authentication",
+    "status": 201,
+    "statusText": "Created",
+    "data": {
+      "id": 79,
+      "originalInput": "Build an API for user authentication",
+      "inputType": "text",
+      "refinedPrompt": "{\"primaryIntent\":\"Create an online application\",\"functionalExpectations\":[],\"technicalConstraints\":[],\"expectedOutputs\":[],\"ambiguities\":[],\"missingInformation\":[],\"confidenceScore\":0.7}",
+      "confidenceScore": 0.7,
+      "metadata": "{}",
+      "createdAt": "2026-01-11T07:31:34.000Z"
+    },
+    "valid": true,
+    "refinedOutput": {
+      "primaryIntent": "Create an online application",
+      "functionalExpectations": [],
+      "technicalConstraints": [],
+      "expectedOutputs": [],
+      "ambiguities": [],
+      "missingInformation": [],
+      "confidenceScore": 0.7
+    }
+  },
+  {
+    "input": "Make a login system",
+    "status": 201,
+    "statusText": "Created",
+    "data": {
+      "id": 80,
+      "originalInput": "Make a login system",
+      "inputType": "text",
+      "refinedPrompt": "{\"primaryIntent\":\"Create an online application\",\"functionalExpectations\":[],\"technicalConstraints\":[],\"expectedOutputs\":[],\"ambiguities\":[],\"missingInformation\":[],\"confidenceScore\":0.7}",
+      "confidenceScore": 0.7,
+      "metadata": "{}",
+      "createdAt": "2026-01-11T07:31:34.000Z"
+    },
+    "valid": true,
+    "refinedOutput": {
+      "primaryIntent": "Create an online application",
+      "functionalExpectations": [],
+      "technicalConstraints": [],
+      "expectedOutputs": [],
+      "ambiguities": [],
+      "missingInformation": [],
+      "confidenceScore": 0.7
+    }
+  },
+  {
+    "input": "Develop a task management application",
+    "status": 201,
+    "statusText": "Created",
+    "data": {
+      "id": 81,
+      "originalInput": "Develop a task management application",
+      "inputType": "text",
+      "refinedPrompt": "{\"primaryIntent\":\"Create an online application\",\"functionalExpectations\":[],\"technicalConstraints\":[],\"expectedOutputs\":[],\"ambiguities\":[],\"missingInformation\":[],\"confidenceScore\":0.7}",
+      "confidenceScore": 0.7,
+      "metadata": "{}",
+      "createdAt": "2026-01-11T07:31:34.000Z"
+    },
+    "valid": true,
+    "refinedOutput": {
+      "primaryIntent": "Create an online application",
+      "functionalExpectations": [],
+      "technicalConstraints": [],
+      "expectedOutputs": [],
+      "ambiguities": [],
+      "missingInformation": [],
+      "confidenceScore": 0.7
+    }
+  },
+  {
+    "input": "Create a simple website",
+    "status": 201,
+    "statusText": "Created",
+    "data": {
+      "id": 82,
+      "originalInput": "Create a simple website",
+      "inputType": "text",
+      "refinedPrompt": "{\"primaryIntent\":\"Create an online application\",\"functionalExpectations\":[],\"technicalConstraints\":[],\"expectedOutputs\":[],\"ambiguities\":[],\"missingInformation\":[],\"confidenceScore\":0.7}",
+      "confidenceScore": 0.7,
+      "metadata": "{}",
+      "createdAt": "2026-01-11T07:31:34.000Z"
+    },
+    "valid": true,
+    "refinedOutput": {
+      "primaryIntent": "Create an online application",
+      "functionalExpectations": [],
+      "technicalConstraints": [],
+      "expectedOutputs": [],
+      "ambiguities": [],
+      "missingInformation": [],
+      "confidenceScore": 0.7
+    }
+  }
+]

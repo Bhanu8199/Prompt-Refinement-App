@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark Theme Base */
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+
+  /* Primary - Violet/Indigo Neon */
+  --primary: 262 83% 58%;
+  --primary-foreground: 210 40% 98%;
+
+  /* Secondary - Deep Slate */
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+
+  /* Muted */
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+
+  /* Accents */
+  --accent: 190 90% 50%; /* Cyan for highlights */
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217 33% 20%;
+  --input: 217 33% 17%;
+  --ring: 262 83% 58%;
+
+  --radius: 0.75rem;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-white;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-bold;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-secondary/30 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary rounded-full border-2 border-background;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}
