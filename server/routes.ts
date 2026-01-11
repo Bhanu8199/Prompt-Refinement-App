@@ -433,7 +433,6 @@
 //   });
 // }
 
-
 import type { Express } from "express";
 import { z } from "zod";
 import { db } from "./db";
@@ -447,11 +446,13 @@ import { eq } from "drizzle-orm";
 /* ======================================================
    SMART FALLBACK (TEXT + FILE AWARE)
 ====================================================== */
-function analyzeInputFallback(input: string) {
+function analyzeInputFallback(input: string, isFileUpload: boolean = false) {
+  console.log('analyzeInputFallback called with isFileUpload:', isFileUpload, 'input length:', input.length);
   const text = input.toLowerCase();
 
-  // FILE UPLOAD FALLBACK
-  if (text.includes("uploaded a file")) {
+  // FILE UPLOAD FALLBACK - Always trigger for file uploads
+  if (isFileUpload || text.includes("uploaded a file")) {
+    console.log('File upload detected, returning document analysis');
     return {
       primaryIntent: "Analyze uploaded document",
       functionalExpectations: [
@@ -477,6 +478,60 @@ function analyzeInputFallback(input: string) {
     };
   }
 
+  // DOCUMENT ANALYSIS (text-based request)
+  if (
+    (text.includes("analyze") || text.includes("analysis")) && 
+    (text.includes("document") || text.includes("file"))
+  ) {
+    console.log('Document analysis request detected');
+    return {
+      primaryIntent: "Perform document analysis and information extraction",
+      functionalExpectations: [
+        "Parse and understand document content",
+        "Extract structured information from documents",
+        "Identify key data points and requirements",
+        "Generate summary of findings",
+      ],
+      technicalConstraints: [
+        "Requires document upload capability",
+        "Text extraction and NLP processing",
+        "Support for multiple document formats",
+      ],
+      expectedOutputs: [
+        "Detailed document analysis report",
+        "Extracted key information in structured format",
+        "Summary of main points",
+      ],
+      ambiguities: [
+        "Type of document not specified",
+        "Level of analysis detail unclear",
+      ],
+      missingInformation: [
+        "Actual document to analyze",
+        "Specific information to extract",
+        "Preferred output format",
+      ],
+      confidenceScore: 0.7,
+    };
+  }
+
+  // E-COMMERCE - Check first to prioritize over other patterns
+  if (text.includes("store") || text.includes("ecommerce") || text.includes("e-commerce") || text.includes("shop") || text.includes("commerce")) {
+    return {
+      primaryIntent: "Develop an e-commerce platform",
+      functionalExpectations: [
+        "Browse products",
+        "Add to cart",
+        "Checkout with payments",
+      ],
+      technicalConstraints: ["Secure payment gateway"],
+      expectedOutputs: ["Online shopping platform"],
+      ambiguities: ["Shipping flow not defined"],
+      missingInformation: ["Payment provider"],
+      confidenceScore: 0.9,
+    };
+  }
+
   // FITNESS
   if (text.includes("fitness") || text.includes("workout")) {
     return {
@@ -491,23 +546,6 @@ function analyzeInputFallback(input: string) {
       ambiguities: [],
       missingInformation: ["Target platform"],
       confidenceScore: 0.85,
-    };
-  }
-
-  // E-COMMERCE
-  if (text.includes("store") || text.includes("ecommerce") || text.includes("shop")) {
-    return {
-      primaryIntent: "Develop an e-commerce platform",
-      functionalExpectations: [
-        "Browse products",
-        "Add to cart",
-        "Checkout with payments",
-      ],
-      technicalConstraints: ["Secure payment gateway"],
-      expectedOutputs: ["Online shopping platform"],
-      ambiguities: ["Shipping flow not defined"],
-      missingInformation: ["Payment provider"],
-      confidenceScore: 0.9,
     };
   }
 
@@ -654,6 +692,9 @@ export function registerRoutes(_: any, app: Express) {
         if (!extractedContent.trim()) {
           extractedContent =
             "User uploaded a file. Extracted content is limited or unavailable.";
+        } else {
+          // Prepend file upload indicator for successful extractions
+          extractedContent = `User uploaded a file: ${extractedContent}`;
         }
       }
 
@@ -664,10 +705,25 @@ export function registerRoutes(_: any, app: Express) {
       });
 
       let refinedOutput;
-      try {
-        refinedOutput = await refineWithGemini(validatedInput.content);
-      } catch {
-        refinedOutput = analyzeInputFallback(validatedInput.content);
+      
+      // Check if input mentions document analysis (even without file upload)
+      const text = validatedInput.content.toLowerCase();
+      const isDocumentAnalysisRequest = 
+        (text.includes("analyze") || text.includes("analysis")) && 
+        (text.includes("document") || text.includes("file"));
+      
+      // For file uploads OR document analysis requests, use fallback analysis
+      if (isFileUpload || isDocumentAnalysisRequest) {
+        console.log('Using fallback for file upload or document analysis request');
+        refinedOutput = analyzeInputFallback(validatedInput.content, isFileUpload);
+      } else {
+        try {
+          console.log('Using Gemini for text input');
+          refinedOutput = await refineWithGemini(validatedInput.content);
+        } catch (error) {
+          console.log('Gemini failed, using fallback:', error.message);
+          refinedOutput = analyzeInputFallback(validatedInput.content, false);
+        }
       }
 
       refinedOutputSchema.parse(refinedOutput);
