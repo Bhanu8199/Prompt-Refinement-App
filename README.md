@@ -220,5 +220,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For support and questions, please open an issue in the repository or contact the development team.
 
-Repository issues link : https://github.com/Bhanu8199/Prompt-Refinement-App/issues
-For Contacting Me : https://bvm-portfolio.vercel.app/
+- Repository issues link : https://github.com/Bhanu8199/Prompt-Refinement-App/issues
+- For Contacting Me : https://bvm-portfolio.vercel.app/
