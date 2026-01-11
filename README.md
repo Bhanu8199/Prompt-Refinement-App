@@ -47,6 +47,7 @@ A full-stack AI-powered application for refining prompts using multi-modal input
 - **FFmpeg 1.1.0**: Video/audio processing
 - **Google Generative AI 0.24.1**: AI-powered prompt refinement
 - **OpenAI 6.15.0**: Alternative AI service
+- **Hugging Face Mistral-7B-Instruct-v0.2**: Primary AI model for prompt refinement and analysis
 
 ### Middleware & Utilities
 - **Multer 1.4.5**: File upload handling
